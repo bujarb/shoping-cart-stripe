@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Product;
-use Session;
-use App\Cart;
-use Auth;
 use Stripe\Stripe;
 use Stripe\Charge;
+use App\Product;
 use App\Order;
+use App\Cart;
+use Session;
+use Auth;
 use DB;
 
 class ProductController extends Controller
