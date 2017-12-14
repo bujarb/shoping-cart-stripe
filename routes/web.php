@@ -31,7 +31,7 @@ Route::post('/checkout',[
 ]);
 
 Route::get('/user/profile',[
-	'uses' => 'UserController@getProfile',
+	'uses' => 'ProfileController@getProfile',
 	'as'=>'user.profile',
 	'middleware' => 'auth'
 ]);

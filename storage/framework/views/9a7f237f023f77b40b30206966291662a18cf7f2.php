@@ -60,7 +60,7 @@
 						<div class="col-xs-12">
 							<div class="form-group">
 								<label for="cvc">CVC</label>
-								<input type="text" name="card-cvc" class="form-control" required maxlength="3">
+								<input type="text" name="card-cvc" id="card-cvc" class="form-control" required maxlength="3">
 							</div>
 						</div>
 					</div>
@@ -74,7 +74,7 @@
 
 <?php $__env->startSection('scripts'); ?>
 	<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-	<script type="text/javascript" src="<?php echo e(URL::to('js/checkout.js')); ?>"></script>
+	<script type="text/javascript" src="<?php echo e(asset('js/checkout.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -61,7 +61,7 @@
 						<div class="col-xs-12">
 							<div class="form-group">
 								<label for="cvc">CVC</label>
-								<input type="text" name="card-cvc" class="form-control" required maxlength="3">
+								<input type="text" name="card-cvc" id="card-cvc" class="form-control" required maxlength="3">
 							</div>
 						</div>
 					</div>
@@ -74,5 +74,5 @@
 
 @section('scripts')
 	<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-	<script type="text/javascript" src="{{ URL::to('js/checkout.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/checkout.js') }}"></script>
 @endsection
