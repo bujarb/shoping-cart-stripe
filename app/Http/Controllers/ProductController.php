@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Product;
-use Session;
-use App\Cart;
-use Auth;
 use Stripe\Stripe;
 use Stripe\Charge;
+use App\Product;
 use App\Order;
-use DB;
+use App\Cart;
+use Session;
+use Auth;
+
+
 
 class ProductController extends Controller
 {
@@ -52,9 +53,6 @@ class ProductController extends Controller
 
     public function postCheckout(Request $request){
 
-        //dd($request);
-        //dd($request->input('stripeToken'));
-
         if(!Session::has('cart')){
             return redirect()->route('product.shoping-cart');
         }
@@ -62,7 +60,7 @@ class ProductController extends Controller
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
 
-        \Stripe\Stripe::setApiKey("sk_test_hr7lM15dC9jkvungcKhjbuLn");
+        Stripe::setApiKey("sk_test_hr7lM15dC9jkvungcKhjbuLn");
         try{
             $charge = Charge::create(array(
               "amount" => $cart->totalPrice * 100,
