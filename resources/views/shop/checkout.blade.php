@@ -7,8 +7,12 @@
 @section('content')
 	<div class="row">
 			<div class="col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-4">
-				<h1>Checkout</h1>
-				<h4>Your total is:{{$total}}</h4>
+				<h1 class="text-center">Checkout</h1>
+				<hr>
+				<div class="row">
+					 <h2 class="text-center">Your total price is: ${{$total}}</h2>
+				</div>
+				<hr>
 				<div id="charge-error" class="alert alert-danger {{ !Session::has('error') ? 'hidden' : ''}}">
 					{{Session::get('error')}}
 				</div>
@@ -62,7 +66,7 @@
 						</div>
 					</div>
 					{{csrf_field()}}
-					<button type="submit" class="btn btn-success">Buy Now</button>
+					<button type="submit" class="btn btn-success btn-block">Buy Now</button>
 				</form>
 			</div>
 		</div>

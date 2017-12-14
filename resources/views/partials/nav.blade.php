@@ -8,17 +8,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{{route('product.index')}}">Brand</a>
+      <a class="navbar-brand" href="{{route('product.index')}}">E-Shop</a>
     </div>
 
-     <div class="col-md-3 col-md-offset-4 aaa clearfix">
-          <div class="input-group">
-      <input type="text" class="form-control" placeholder="Search for...">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Go!</button>
-      </span>
-    </div><!-- /input-group -->
-     </div>
       </form>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -26,7 +18,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="{{route('product.shoppingCart')}}"><i class="fa fa-shopping-cart" aria-hidden="true"></i>
  Shoping Cart <span class="badge">{{Session::has('cart') ? Session::get('cart')->totalQty : ''}}</span></a></li>
-        
+
             @if(!Auth::check())
               <li><a href="{{route('login')}}"><i class="fa fa-user" aria-hidden="true"></i>
  Sign In</a></li>

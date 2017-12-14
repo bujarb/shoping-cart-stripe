@@ -10,15 +10,13 @@ use Auth;
 use Stripe\Stripe;
 use Stripe\Charge;
 use App\Order;
-use App\Category;
 use DB;
 
 class ProductController extends Controller
 {
     public function getIndex(){
-    	$products = Product::all();
-        $categories = Category::all();
-    	return view('shop.index',['products'=>$products,'categories'=>$categories]);
+    	$products = Product::paginate(12);
+    	return view('shop.index',['products'=>$products]);
     }
 
     public function getAddToCart(Request $request,$id){
@@ -53,6 +51,10 @@ class ProductController extends Controller
     }
 
     public function postCheckout(Request $request){
+
+        //dd($request);
+        //dd($request->input('stripeToken'));
+
         if(!Session::has('cart')){
             return redirect()->route('product.shoping-cart');
         }
@@ -60,7 +62,7 @@ class ProductController extends Controller
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
 
-        Stripe::setApiKey('sk_test_PZ8Z7UsknXiqZUFRzgidicgS');
+        \Stripe\Stripe::setApiKey("sk_test_hr7lM15dC9jkvungcKhjbuLn");
         try{
             $charge = Charge::create(array(
               "amount" => $cart->totalPrice * 100,
@@ -68,6 +70,7 @@ class ProductController extends Controller
               "source" => $request->input('stripeToken'), // obtained with Stripe.js
               "description" => "Test Charge"
             ));
+
             $order = new Order();
             $order->cart = serialize($cart);
             $order->address = $request->input('address');
@@ -87,34 +90,5 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         return view('shop.single')->with('product',$product);
-    }
-
-
-    public function getAllByCategory($id){
-        $books = Product::where('category_id',$id)->get();
-
-        return view('shop.category',['books'=>$books]);
-    }
-
-    public function getAddProduct(){
-        $categories = Category::all();
-        return view('shop.addproduct',['categories'=>$categories]);
-    }
-
-    public function postAddProduct(Request $request){
-        $this->validate($request,[
-            'name' => 'required',
-            'price' => 'required'
-        ]);
-
-        $product = new Product();
-        $product->name = $request->input('name');
-        $product->price = $request->input('price');
-        $product->user_id = Auth::user()->id;
-        $product->category_id = $request->input('category');
-
-        $product->save();
-
-        return redirect()->route('product.index');
     }
 }
