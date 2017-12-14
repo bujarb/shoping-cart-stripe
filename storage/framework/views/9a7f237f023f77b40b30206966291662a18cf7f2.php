@@ -19,8 +19,8 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="form-group">
-								<label for="name">Name</label>
-								<input type="text" name="name" id="name" class="form-control" required>
+								<label for="card-name">Card Holder Name</label>
+								<input type="text" name="card-name" id="card-name" class="form-control" required>
 							</div>
 						</div>
 						<div class="col-xs-12">
@@ -31,38 +31,33 @@
 						</div>
 						<div class="col-xs-12">
 							<div class="form-group">
-								<label for="card-name">Card Holder Name</label>
-								<input type="text" name="card-name" id="card-name" class="form-control" required>
-							</div>
-						</div>
-						<div class="col-xs-12">
-							<div class="form-group">
 								<label for="card-number">Card Number</label>
 								<input type="text" name="card-number" id="card-number" class="form-control" maxlength="16" required>
 							</div>
 						</div>
 						<div class="col-xs-12">
 							<div class="row">
-								<div class="col-xs-6">
+								<div class="col-xs-4">
 									<div class="form-group">
-										<label for="card-expiry-month">Expiration Month</label>
+										<label for="card-expiry-month">Exp Month</label>
 										<input type="text" name="card-expiry-month" id="card-expiry-month" class="form-control" required maxlength="2">
 									</div>
 								</div>
-								<div class="col-xs-6">
+								<div class="col-xs-4">
 									<div class="form-group">
-										<label for="card-expiry-year">Expiration Year</label>
+										<label for="card-expiry-year">Exp Year</label>
 										<input type="text" name="card-expiry-year" id="card-expiry-year" class="form-control" required maxlength="4">
+									</div>
+								</div>
+								<div class="col-xs-4">
+									<div class="form-group">
+										<label for="cvc">CVC</label>
+										<input type="text" name="card-cvc" id="card-cvc" class="form-control" required maxlength="3">
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col-xs-12">
-							<div class="form-group">
-								<label for="cvc">CVC</label>
-								<input type="text" name="card-cvc" id="card-cvc" class="form-control" required maxlength="3">
-							</div>
-						</div>
+
 					</div>
 					<?php echo e(csrf_field()); ?>
 

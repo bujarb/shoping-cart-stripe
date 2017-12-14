@@ -52,9 +52,6 @@ class ProductController extends Controller
 
     public function postCheckout(Request $request){
 
-        //dd($request);
-        //dd($request->input('stripeToken'));
-
         if(!Session::has('cart')){
             return redirect()->route('product.shoping-cart');
         }
@@ -74,7 +71,7 @@ class ProductController extends Controller
             $order = new Order();
             $order->cart = serialize($cart);
             $order->address = $request->input('address');
-            $order->name = $request->input('name');
+            $order->name = $request->input('card-name');
             $order->payment_id = $charge->id;
 
             Auth::user()->orders()->save($order);
